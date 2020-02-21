@@ -1,29 +1,31 @@
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-    var productexists=false
-    var userexists=false
+    var productExists=false
+    var userExists=false
     if (req.query.userId || (req.body && req.body.userId)) {
         //get User
-        var data = "{\"userId\": "+userId+"}";
-        xhr.addEventListener("readystatechange", function() {
+        var dataUser = "{\"userId\": "+userId+"}";
+        xhrUser.addEventListener("readystatechange", function() {
             if(this.readyState === 4) {
               console.log("user"+this.responseText);
-              var userexists=true
+              var userExists=true
               if (req.query.productId || (req.body && req.body.productId)) {
                 //get product
-                var data = "{\"productId\": "+productId+"}";
-                xhr.addEventListener("readystatechange", function() {
+                var dataProduct = "{\"productId\": "+productId+"}";
+                xhrProduct.addEventListener("readystatechange", function() {
                     if(this.readyState === 4) {
                       console.log("product"+this.responseText);
 
-                      var productexists=true
-                      var rating= "{\"Id\": " + create_UUID 
+                      var productExists=true
+                      var createRating= "{\"Id\": " + create_UUID 
                       + "{\"userId\": " + (req.query.userId || req.body.userId)
                       + "{\"rating\": " + ((req.query.rating || req.body.rating))
                       + "{\"userNotes\": " + ((req.query.userNotes || req.body.userNotes))
+                      //add timestamp
+                      //locationName
                       context.res = {
                           // status: 200, /* Defaults to 200 */
-                          body: rating
+                          body: createRating
 
                       };
                       if(req.query.rating || (req.body && req.body.rating)){
@@ -33,20 +35,22 @@ module.exports = async function (context, req) {
                     }
                   });
                   
-                  xhr.open("GET", "https://serverlessohproduct.trafficmanager.net/api/GetProduct");
-                  xhr.setRequestHeader("Content-Type", "text/plain");
+                  xhrProduct.open("GET", "https://serverlessohproduct.trafficmanager.net/api/GetProduct");
+                  xhrProduct.setRequestHeader("Content-Type", "text/plain");
                   
-                  xhr.send(data);
+                  xhrProduct.send(dataProduct);
                
             }    //productId
        
            }
-          xhr.open("GET", "https://serverlessohuser.trafficmanager.net/api/GetUser");
-          xhr.setRequestHeader("Content-Type", "text/plain");
+        });
+          xhrUser.open("GET", "https://serverlessohuser.trafficmanager.net/api/GetUser");
+          xhrUser.setRequestHeader("Content-Type", "text/plain");
           
-          xhr.send(data);
+          xhrUser.send(dataUser);
         
-    }
+    }   //1 if
+
     
     
     else {
