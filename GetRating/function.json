@@ -16,15 +16,14 @@
       "name": "res"
     },
     {
-      "name": "inputDocumentOut",
       "type": "cosmosDB",
-      "databaseName": "ratingDatabase",
-      "collectionName": "ratingCollection",
-      "createIfNotExists": false,
-      "partitionKey": "/rating",
-      "connectionStringSetting": "popenhack_DOCUMENTDB",
-      "direction": "out",
-      "id": "{rand-guid}"
-  }
+      "name": "RatingItems",
+      "databaseName": "RatingItems",
+      "collectionName": "Items",
+      "connection": "CosmosDBConnection",
+      "direction": "in",
+      "Id": "{id}",
+      "PartitionKey": "{partitionKeyValue}"
+    }
   ]
 }
