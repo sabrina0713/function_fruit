@@ -1,58 +1,57 @@
+var request = require('request');
+
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
     var productExists=false
     var userExists=false
     if (req.query.userId || (req.body && req.body.userId)) {
         //get User
-        var dataUser = "{\"userId\": "+userId+"}";
-        xhrUser.addEventListener("readystatechange", function() {
-            if(this.readyState === 4) {
-              console.log("user"+this.responseText);
-              var userExists=true
+        //var dataUser = "{\"userId\": "+req.body.userId+"}";
+        var options = {
+          'method': 'GET',
+          'url': 'https://serverlessohuser.trafficmanager.net/api/GetUser?userId='+req.body.userId,
+          'headers': {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          form: {
+        
+          }
+        };
+        request(options, function (error, response) { 
+            if (error) throw new Error(error);
+            context.res = {
+              // status: 200, /* Defaults to 200 */
+              body: error
+
+            };
+            console.log("the result from getting a userId"+ response.body);
+        });
+        
               if (req.query.productId || (req.body && req.body.productId)) {
                 //get product
-                var dataProduct = "{\"productId\": "+productId+"}";
-                xhrProduct.addEventListener("readystatechange", function() {
-                    if(this.readyState === 4) {
-                      console.log("product"+this.responseText);
-
-                      var productExists=true
-                      var createRating= "{\"Id\": " + create_UUID 
-                      + "{\"userId\": " + (req.query.userId || req.body.userId)
+                  console.log("productid"+req.body.productId)
+                      
+                        var createRating= 
+                        //"{\"id\": " + create_UUID 
+                       "{\"userId\": " + (req.query.userId || req.body.userId)
+                      + "{\"proudctId\": " + (req.query.productId || req.body.productId)
                       + "{\"rating\": " + ((req.query.rating || req.body.rating))
                       + "{\"userNotes\": " + ((req.query.userNotes || req.body.userNotes))
-                      //add timestamp
+                      + "{\"timestamp\": " +  new Date().toLocaleString()
                       //locationName
                       context.res = {
                           // status: 200, /* Defaults to 200 */
                           body: createRating
 
                       };
-                      if(req.query.rating || (req.body && req.body.rating)){
-                        console.log("rating"+this.responseText);
+
+                      context.bindings.inputDocumentOut = createRating
+                      //context.done();
                       }
 
                     }
-                  });
                   
-                  xhrProduct.open("GET", "https://serverlessohproduct.trafficmanager.net/api/GetProduct");
-                  xhrProduct.setRequestHeader("Content-Type", "text/plain");
-                  
-                  xhrProduct.send(dataProduct);
-               
-            }    //productId
-       
-           }
-        });
-          xhrUser.open("GET", "https://serverlessohuser.trafficmanager.net/api/GetUser");
-          xhrUser.setRequestHeader("Content-Type", "text/plain");
-          
-          xhrUser.send(dataUser);
-        
-    }   //1 if
-
-    
-    
+           
     else {
         context.res = {
             status: 400,
