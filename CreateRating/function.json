@@ -22,7 +22,7 @@
       "collectionName": "ratingCollection",
       "createIfNotExists": false,
       "partitionKey": "/rating",
-      "connectionStringSetting": "popenhack_DOCUMENTDB",
+      "connectionStringSetting": "lpopenhack_DOCUMENTDB",
       "direction": "out",
       "id": "{rand-guid}"
   }
