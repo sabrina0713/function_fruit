@@ -4,7 +4,7 @@ module.exports = async function (context, req, ratingItems) {
     if (req.query.ratingId || (req.body && req.body.ratingId)) {
         context.res = {
             // status: 200, /* Defaults to 200 */
-            body: "Found " + ratingItems.userNotes
+            body: "Found " + context.bindings.inputDocumentOut
         };
     }
     else {

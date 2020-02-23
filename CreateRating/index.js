@@ -31,11 +31,11 @@ module.exports = async function (context, req) {
                       
                         var createRating= 
                        
-                       "{\"userId\": " + (req.query.userId || req.body.userId)
-                      + "{\"proudctId\": " + (req.query.productId || req.body.productId)
-                      + "{\"rating\": " + ((req.query.rating || req.body.rating))
-                      + "{\"userNotes\": " + ((req.query.userNotes || req.body.userNotes))
-                      + "{\"timestamp\": " +  new Date().toLocaleString()
+                       "{\"userId\": \" " + (req.query.userId || req.body.userId)
+                      + "\",\"proudctId\: " + (req.query.productId || req.body.productId)
+                      + "\"rating\": " + ((req.query.rating || req.body.rating))
+                      + "\"userNotes\": " + ((req.query.userNotes || req.body.userNotes))
+                      + "\"timestamp\": " +  new Date().toLocaleString() +"}"
                       
                    
                       context.res = {
@@ -44,7 +44,7 @@ module.exports = async function (context, req) {
 
                       };
 
-                      context.bindings.inputDocumentOut = req.query
+                      context.bindings.inputDocumentOut = JSON.stringify(req.body)
                       //context.done();
                       }
 

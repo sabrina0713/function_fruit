@@ -16,14 +16,14 @@
       "name": "res"
     },
     {
+      "name": "inputDocumentOut",
       "type": "cosmosDB",
-      "name": "RatingItems",
-      "databaseName": "RatingItems",
-      "collectionName": "Items",
-      "connection": "CosmosDBConnection",
-      "direction": "in",
-      "Id": "{id}",
-      "PartitionKey": "{partitionKeyValue}"
-    }
+      "databaseName": "ratingDatabase",
+      "collectionName": "ratingCollection",
+      "createIfNotExists": false,
+      "partitionKey": "/rating",
+      "connectionStringSetting": "lpopenhack_DOCUMENTDB",
+      "direction": "in"
+  }
   ]
 }
