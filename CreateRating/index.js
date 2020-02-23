@@ -31,12 +31,12 @@ module.exports = async function (context, req) {
                       
                         var createRating= 
                        
-                      /* "{\"userId\": " + (req.query.userId || req.body.userId)
+                       "{\"userId\": " + (req.query.userId || req.body.userId)
                       + "{\"proudctId\": " + (req.query.productId || req.body.productId)
                       + "{\"rating\": " + ((req.query.rating || req.body.rating))
                       + "{\"userNotes\": " + ((req.query.userNotes || req.body.userNotes))
                       + "{\"timestamp\": " +  new Date().toLocaleString()
-                      */
+                      
                    
                       context.res = {
                           // status: 200, /* Defaults to 200 */
