@@ -1,0 +1,23 @@
+{
+  "bindings": [
+    {
+      "type": "eventHubTrigger",
+      "name": "eventHubMessages",
+      "direction": "in",
+      "eventHubName": "openhack",
+      "connection": "lpopenhack_RootManageSharedAccessKey_EVENTHUB",
+      "cardinality": "many",
+      "consumerGroup": "$Default"
+    },
+    {
+      "name": "inputDocumentOut",
+      "type": "cosmosDB",
+      "databaseName": "ratingDatabase",
+      "collectionName": "eventhubCollection",
+      "createIfNotExists": false,
+      "partitionKey": "/rating",
+      "connectionStringSetting": "lpopenhack_DOCUMENTDB",
+      "direction": "out"
+  }
+  ]
+}

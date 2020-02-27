@@ -23,7 +23,8 @@
       "createIfNotExists": false,
       "partitionKey": "/rating",
       "connectionStringSetting": "lpopenhack_DOCUMENTDB",
-      "direction": "in"
+      "direction": "in",
+      "id":"{ratingId}"
   }
   ]
 }
