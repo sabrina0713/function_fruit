@@ -18,6 +18,14 @@
       "partitionKey": "/rating",
       "connectionStringSetting": "lpopenhack_DOCUMENTDB",
       "direction": "out"
-  }
+  },
+  {
+    "name": "outputSbQueue",
+    "type": "serviceBus",
+    "topicName": "pubsub",
+    "connection": "MyServiceBus",
+    "direction": "out"
+   }
+  
   ]
 }
