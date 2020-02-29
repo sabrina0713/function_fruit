@@ -24,7 +24,7 @@
       "partitionKey": "/rating",
       "connectionStringSetting": "lpopenhack_DOCUMENTDB",
       "direction": "in",
-      "id":"{ratingId}"
+      "id": "{Query.id}"
   }
   ]
 }

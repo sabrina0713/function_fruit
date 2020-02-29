@@ -22,7 +22,7 @@
   {
     "name": "outputSbQueue",
     "type": "serviceBus",
-    "topicName": "pubsub",
+    "topicName": "allmessages",
     "connection": "MyServiceBus",
     "direction": "out"
    }

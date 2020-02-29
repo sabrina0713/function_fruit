@@ -4,7 +4,7 @@
       "name": "mySbMsg",
       "type": "serviceBusTrigger",
       "direction": "in",
-      "topicName": "pubsub",
+      "topicName": "allmessages",
       "subscriptionName": "function",
       "connection": "MyServiceBus"
     }

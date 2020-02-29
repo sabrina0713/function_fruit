@@ -29,13 +29,18 @@ module.exports = async function (context, req) {
                 //get product
                   console.log("productid"+req.body.productId)
                       
-                        var createRating= 
+                        var createRating= JSON.stringify({
+                          userId:(req.query.userId || req.body.userId),
+                          productId:(req.query.productId || req.body.productId),
+                          userNotes:((req.query.userNotes || req.body.userNotes)),
+                          timestamp: new Date().toLocaleString()
+                        })
                        
-                       "{\"userId\": \" " + (req.query.userId || req.body.userId)
+                       /*"{\"userId\": \" " + (req.query.userId || req.body.userId)
                       + "\",\"proudctId\: " + (req.query.productId || req.body.productId)
                       + "\"rating\": " + ((req.query.rating || req.body.rating))
                       + "\"userNotes\": " + ((req.query.userNotes || req.body.userNotes))
-                      + "\"timestamp\": " +  new Date().toLocaleString() +"}"
+                      + "\"timestamp\": " +  new Date().toLocaleString() +"}"  */
                       
                    
                       context.res = {
