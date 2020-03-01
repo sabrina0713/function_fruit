@@ -15,7 +15,7 @@
       "databaseName": "ratingDatabase",
       "collectionName": "eventhubCollection",
       "createIfNotExists": false,
-      "partitionKey": "/rating",
+      "partitionKey": "/productName",
       "connectionStringSetting": "lpopenhack_DOCUMENTDB",
       "direction": "out"
   },

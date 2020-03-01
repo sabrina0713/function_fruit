@@ -1,0 +1,31 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ],
+      "route":"GetRating/{userId}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "name": "inputDocumentOut",
+      "type": "cosmosDB",
+      "databaseName": "ratingDatabase",
+      "collectionName": "ratingCollection",
+      "createIfNotExists": false,
+      "partitionKey": "rating",
+      "connectionStringSetting": "lpopenhack_DOCUMENTDB",
+      "direction": "in",
+      "sqlQuery": "SELECT * from c where c.userId = {userId}"
+  }
+  ]
+}

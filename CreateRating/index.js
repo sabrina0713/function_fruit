@@ -62,7 +62,7 @@ module.exports = async function (context, req) {
                             sentimentscore: JSON.parse(response.body).documents[0].score
                           })
                           context.res = {
-                            // status: 200, /* Defaults to 200 */
+                             status: 200, /* Defaults to 200 */
                             body: JSON.parse(createRating)
   
                         };

@@ -8,15 +8,20 @@ module.exports = async function(context, mySbMsg) {
     const sbClient = ServiceBusClient.createFromConnectionString(connectionString); 
     const topicClient = sbClient.createTopicClient(topicName);
     const sender = topicClient.createSender();
+
     try {
-    const message= {
-        body: `${context.bindingData.header}`,
+    /*const message= {
+        body: `${mySbMsg.header}`,
         label: `add totalcost`,
         userProperties: {
             TotalCost: `${mySbMsg.header.totalCost}`
         }
-      };
-      context.log(`Sending message to largerthan100: ${message.body}`);
+      }; */
+      //if(mySbMsg.totalcost>100)
+      const message=mySbMsg.header
+      
+      
+      context.log(`Sending message to largerthan100: ${message}`);
        await sender.send(message);
     }  finally {
        await topicClient.close();

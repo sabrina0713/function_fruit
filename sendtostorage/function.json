@@ -11,8 +11,8 @@
     {
       "name": "myOutputBlob",
       "type": "blob",
-      "path": "totalcost/{rand-guid}.txt",
-      "connection": "MyStorageConnectionAppSetting",
+      "path": "totalcost",
+      "connection": "AzureWebJobsStorage",
       "direction": "out"
     }
   ]
