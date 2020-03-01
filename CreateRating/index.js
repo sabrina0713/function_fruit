@@ -29,28 +29,51 @@ module.exports = async function (context, req) {
                 //get product
                   console.log("productid"+req.body.productId)
                       
-                        var createRating= JSON.stringify({
-                          userId:(req.query.userId || req.body.userId),
-                          productId:(req.query.productId || req.body.productId),
-                          userNotes:((req.query.userNotes || req.body.userNotes)),
-                          timestamp: new Date().toLocaleString()
+                        
+                        var sentiment=JSON.stringify({
+                          "documents": [
+                            {
+                                "language": "en",
+                                "id": "1",
+                                "text": ((req.query.userNotes || req.body.userNotes)),
+                            }]
+                          
                         })
-                       
-                       /*"{\"userId\": \" " + (req.query.userId || req.body.userId)
-                      + "\",\"proudctId\: " + (req.query.productId || req.body.productId)
-                      + "\"rating\": " + ((req.query.rating || req.body.rating))
-                      + "\"userNotes\": " + ((req.query.userNotes || req.body.userNotes))
-                      + "\"timestamp\": " +  new Date().toLocaleString() +"}"  */
-                      
+                        var optionsSentiment = {
+                          'method': 'POST',
+                          'url': 'https://openhacksentiment.cognitiveservices.azure.com/text/analytics/v2.1/sentiment',
+                          'headers': {
+                            'Ocp-Apim-Subscription-Key': '9f086f9275ae44d285c64ae158284834',
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                          },
+                          body: sentiment
+                        };
+                        request(optionsSentiment, function (error, response) { 
+                          if (error) throw new Error(error);
+                          console.log("sentiment result"+response.body);
+                         
+                          
+                          var createRating= JSON.stringify({
+                            userId:(req.query.userId || req.body.userId),
+                            productId:(req.query.productId || req.body.productId),
+                            userNotes:((req.query.userNotes || req.body.userNotes)),
+                            timestamp: new Date().toLocaleString(),
+                            sentimentscore: JSON.parse(response.body).documents[0].score
+                          })
+                          context.res = {
+                            // status: 200, /* Defaults to 200 */
+                            body: createRating
+  
+                        };
+  
+                        context.bindings.inputDocumentOut = createRating
+                        //context.done();
+                        });
+                        
+                  
                    
-                      context.res = {
-                          // status: 200, /* Defaults to 200 */
-                          body: createRating
-
-                      };
-
-                      context.bindings.inputDocumentOut = JSON.stringify(req.body)
-                      //context.done();
+                     
                       }
 
     }

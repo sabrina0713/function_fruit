@@ -8,7 +8,8 @@
       "methods": [
         "get",
         "post"
-      ]
+      ],
+      "route":"GetRating/{id}"
     },
     {
       "type": "http",
@@ -21,10 +22,10 @@
       "databaseName": "ratingDatabase",
       "collectionName": "ratingCollection",
       "createIfNotExists": false,
-      "partitionKey": "/rating",
+      "partitionKey": "rating",
       "connectionStringSetting": "lpopenhack_DOCUMENTDB",
       "direction": "in",
-      "id": "{Query.id}"
+      "sqlQuery": "SELECT * from c where c.id = {id}"
   }
   ]
 }
